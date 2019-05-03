@@ -1,5 +1,6 @@
 node{
-    properties([pipelineTriggers([pollSCM('* * * * *')])])
+    properties([parameters([string(defaultValue: 'IP', description: 'Where should I build? ', name: 'Environment', trim: true)]), pipelineTriggers([pollSCM('* * * * *')])])
+
     stage("Pull Repo"){
         git 'git@github.com:farrukh90/cool_website.git'
     }
