@@ -8,4 +8,10 @@ node{
     stage("Index file"){
         sh "scp  index.html          ec2-user@34.254.229.99:/tmp"
     }
+    stage("Move index"){
+        sh "ssh  ec2-user@34.254.229.99     sudo mv /tmp/index.html        /var/www/html/index.html"
+    }
+    stage("Restart webserver"){
+        sh "ssh  ec2-user@34.254.229.99      sudo systemctl restart httpd "
+    }
 }
